@@ -8,9 +8,9 @@ navbar:
     - text: "Projects"
       href: projects.html
     - icon: fa-envelope fa-lg
-      href: mailto:<you@youremail.com>
+      href: mailto:rx2236@columbia.edu
     - icon: fa-github fa-lg
-      href: http://github.com/<YOUR_GH_NAME>/
+      href: http://github.com/RuiqiXue126/
 output:
   html_document:
     theme: cerulean
