@@ -20,7 +20,8 @@ ny_noaa =
   filter(date >= as.Date("2008-01-01"), date <= as.Date("2010-12-31")) |> 
   filter(id == "USW00094728") |> 
   mutate(tmin = as.numeric(tmin), tmax = as.numeric(tmax), tmin = tmin / 10, tmax = tmax / 10) |> 
-  mutate(name = "Central Park") |> 
+  mutate(name = "Central Park",
+         month = lubridate::floor_date(date, unit = "month")) |> 
   select(name, everything())
 ```
 
@@ -36,7 +37,7 @@ ny_noaa |>
   layout(title = "Temperature Plot for Central Park Between 2008 and 2010",
     xaxis = list(title = "Minimum daily temperature (C)"),
     yaxis = list(title = "Maximum daily temperature (C)"),
-    legend = list(x = 1, y = 1, title = "CP"))
+    legend = list(x = 1, y = 1))
 ```
 
 Column {data-width=350}
@@ -45,7 +46,14 @@ Column {data-width=350}
 ### Chart B
 
 ```{r}
-
+ny_noaa |>
+  group_by(month) |>
+  summarize(mean_tmax = mean(tmax)) |>
+  plot_ly(x = ~month, y = ~mean_tmax, type = "scatter", mode = "lines+markers") |>
+  layout(title = "Average Max Temperature for Central Park Between 2008 and 2010",
+    xaxis = list(title = "Month"),
+    yaxis = list(title = "Average maximum temperature (C)"))
+  
 ```
 
 ### Chart C
