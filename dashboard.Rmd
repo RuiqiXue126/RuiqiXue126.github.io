@@ -59,6 +59,11 @@ ny_noaa |>
 ### Chart C
 
 ```{r}
-
+ny_noaa |>
+  filter(prcp > 0) |>
+  plot_ly(x = ~prcp, type = "histogram", histnorm = "probability", opacity = 0.5) |>
+  layout(title = "Density Plot of Precipitation for Central Park Between 2008 and 2010",
+    xaxis = list(title = "Precipitation (tenths of mm)"),
+    yaxis = list(title = "Density"))
 ```
 
