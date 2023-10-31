@@ -3,15 +3,15 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "About"
+    - text: "About Me"
       href: about.html
-    - text: "Projects"
-      href: projects.html
     - icon: fa-envelope fa-lg
       href: mailto:rx2236@columbia.edu
     - icon: fa-github fa-lg
       href: http://github.com/RuiqiXue126/
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/ruiqi-xue-82740b1ab/
 output:
   html_document:
-    theme: cerulean
+    theme: cosmo
     

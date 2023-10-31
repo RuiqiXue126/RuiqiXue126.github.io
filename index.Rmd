@@ -1,15 +1,15 @@
 ---
-title: "My awesome website"
+title: "RUIQI XUE"
 output: 
   html_document:
     toc: true
     toc_float: true
-    theme: cerulean
+    theme: cosmo
 ---
 
-# Welcome to Ruiqi Xue's website
+# Welcome to Ruiqi's website
 
 
-![](images/ted.jpg)
+![](images/photo.JPG){width=40%}
 
-[about](about.html)
+[About Me / Resume](about.html)

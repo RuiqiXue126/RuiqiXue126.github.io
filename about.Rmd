@@ -1,8 +1,80 @@
 ---
-title: "about"
+title: "About Me"
 author: "Ruiqi Xue"
-date: "2023-10-19"
+
 output: html_document
 ---
 
-I am a student.
+I am a Master student of Biostatistics at Columbia University, in the Theory and Method track. My expected graduation date is May 2025.
+
+Currently I am taking the following courses: 
+Intro to Randomized Clinical Trial, Data Science, Probability, and Epidemiology
+
+
+
+Before attending graduate school, I earned my bachelor's degree in Data Science from NYU in May 2023, with a minor in Math.I received honors such as the Dean’s List for Academic Years 2021-2022 and 2022-2023.
+
+Selected courseworks are listed as follows:
+Machine Learning, Databases, Information Visualization, Biostatistics for Public Health, Probability & Statistics, Real Analysis, Math Modeling, Discrete Math, Linear Algebra, Multivariable Calculus, Econometrics.
+
+
+#### SKILLS:
+
+Programming skills: Python, R (R Shiny), SQL, SAS, STATA, SPSS, Java, HTML, LaTeX
+      	 
+Python libraries proficiently used: NumPy, SciPy, Pandas, Matplotlib, Scikit-learn, PyTorch, TensorFlow, Flask
+
+Language skills: English (Proficient), Mandarin (Native), Italian (Intermediate), Cantonese (Intermediate)
+
+
+#### RESEARCH EXPERIENCES AND PROJECTS:
+
+Research Assistant, GIM Lab, NYU Shanghai / Stern School of Business, New York, NY       
+  May. 2022 — May. 2023
+
+
+  Lab PI: Prof. Julia Hur.   Goals, Incentives, & Meritocracy Lab                
+	
+•	Quantitative tasks: Run statistical analyses using R, STATA and SPSS for multiple projects involving large datasets. E.g., Carry out R programming for Longitudinal structural equation modeling (SEM) for a Covid project independently.
+
+•	Literature review: Search and read relevant papers as directed, write summaries and analyses of the papers.
+
+
+Automatic Diagnosis of Myocarditis in Cardiac Magnetic Resonance Images Using Deep Learning Models
+
+DS Capstone Research Project, supervised by Prof. Li Guo & Prof. Sumit Chopra	            Sept. 2022 — Dec. 2022
+
+•	Developed novel deep learning methods to improve the accuracy of binary classification of labeled cardiac MRI.
+
+•	Transfer Learning using CNN (ResNet18 as the baseline). Added scheduler for learning rate decay and weight decay. Used random flip as data augmentation and cross entropy loss, add label smoothing as regularization.
+
+•	Added Supervised Contrastive Learning loss on top of CE loss and with label smoothing. Trained the model with a 94% accuracy and a 97.62% F1 score.
+
+
+Drug Use Demographic Study of Young Adults in NYC (Biostatistics Data Analysis Project)       Mar. 2022 — May. 2022
+
+•	Used a cross-sectional study design to find an association between demographic characteristics and drug use.
+
+•	Conducted multiple statistical tests in R: sample characteristics and descriptive analyses & bivariate analyses using the ANOVA test, and multivariable analysis using the linear regression model.
+
+
+#### VOLUNTEER AND INTERNSHIP EXPERIENCES:
+
+Volunteer, Youth Press and Development Organization, United Nations, Online         May. 2020 — Jun. 2020
+
+COVID-19 Emergency Response Fundraising Program, Malalo Sports Foundation, American Overseas Medical Aid Assoc. 
+
+•	Established a GoFundMe page for a fundraising campaign for Zambian children to get food support in lockdowns.
+
+
+
+Finance Intern, ING Bank, Beijing, China    				     Jun. 2021—Aug. 2021
+
+•	Performed data analyses using Excel (VLOOKUP) and data management using Access Database.
+
+
+Strategy Consulting Intern (online), Kotler Marketing Group, Shenzhen, China    		  Jun. 2021—Jul. 2021
+
+•	Conducted desk research and data collection in a project-oriented manner. Designed slides and presented to the team.
+
+
