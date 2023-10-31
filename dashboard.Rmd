@@ -11,6 +11,17 @@ library(flexdashboard)
 library(tidyverse)
 library(plotly)
 library(p8105.datasets)
+
+data("ny_noaa")
+
+ny_noaa = 
+  ny_noaa |> 
+  drop_na() |> 
+  filter(date >= as.Date("2008-01-01"), date <= as.Date("2010-12-31")) |> 
+  filter(id == "USW00094728") |> 
+  mutate(tmin = as.numeric(tmin), tmax = as.numeric(tmax), tmin = tmin / 10, tmax = tmax / 10) |> 
+  mutate(name = "Central Park") |> 
+  select(name, everything())
 ```
 
 Column {data-width=650}
@@ -19,7 +30,13 @@ Column {data-width=650}
 ### Chart A
 
 ```{r}
-
+ny_noaa |> 
+  plot_ly(x = ~tmax, y = ~tmin, type = "scatter", mode = "markers", 
+          marker = list(opacity = 0.5)) |> 
+  layout(title = "Temperature Plot for Central Park Between 2008 and 2010",
+    xaxis = list(title = "Minimum daily temperature (C)"),
+    yaxis = list(title = "Maximum daily temperature (C)"),
+    legend = list(x = 1, y = 1, title = "CP"))
 ```
 
 Column {data-width=350}
