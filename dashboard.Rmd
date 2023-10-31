@@ -25,7 +25,7 @@ ny_noaa =
   select(name, everything())
 ```
 
-Column {data-width=650}
+Column {data-width=550}
 -----------------------------------------------------------------------
 
 ### Chart A
@@ -40,7 +40,7 @@ ny_noaa |>
     legend = list(x = 1, y = 1))
 ```
 
-Column {data-width=350}
+Column {data-width=450}
 -----------------------------------------------------------------------
 
 ### Chart B
@@ -50,7 +50,7 @@ ny_noaa |>
   group_by(month) |>
   summarize(mean_tmax = mean(tmax)) |>
   plot_ly(x = ~month, y = ~mean_tmax, type = "scatter", mode = "lines+markers") |>
-  layout(title = "Average Max Temperature for Central Park Between 2008 and 2010",
+  layout(title = "Average Max Temperature for Central Park Between 2008 and 2010", font = list(size=10),
     xaxis = list(title = "Month"),
     yaxis = list(title = "Average maximum temperature (C)"))
   
@@ -62,7 +62,7 @@ ny_noaa |>
 ny_noaa |>
   filter(prcp > 0) |>
   plot_ly(x = ~prcp, type = "histogram", histnorm = "probability", opacity = 0.5) |>
-  layout(title = "Density Plot of Precipitation for Central Park Between 2008 and 2010",
+  layout(title = "Density Plot of Precipitation for Central Park Between 2008 and 2010", font = list(size=10),
     xaxis = list(title = "Precipitation (tenths of mm)"),
     yaxis = list(title = "Density"))
 ```
