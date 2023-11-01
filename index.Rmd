@@ -13,3 +13,5 @@ output:
 ![](images/photo.JPG){width=40%}
 
 [About Me / Resume](about.html)
+
+[Dashboard](dashboard.html)
