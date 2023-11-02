@@ -14,15 +14,38 @@ library(p8105.datasets)
 
 data("ny_noaa")
 
-ny_noaa = 
+ny_noaa1 = 
   ny_noaa |> 
   drop_na() |> 
-  filter(date >= as.Date("2008-01-01"), date <= as.Date("2010-12-31")) |> 
+  filter(date >= as.Date("2001-01-01"), date <= as.Date("2010-12-31")) |> 
   filter(id == "USW00094728") |> 
   mutate(tmin = as.numeric(tmin), tmax = as.numeric(tmax), tmin = tmin / 10, tmax = tmax / 10) |> 
   mutate(name = "Central Park",
          month = lubridate::floor_date(date, unit = "month")) |> 
   select(name, everything())
+
+ny_noaa4 = 
+  ny_noaa |> 
+  drop_na() |> 
+  filter(date >= as.Date("2001-01-01"), date <= as.Date("2010-12-31")) |> 
+  mutate(tmin = as.numeric(tmin), tmax = as.numeric(tmax), tmin = tmin / 10, tmax = tmax / 10) |> 
+  mutate(year = lubridate::year(date),
+         month = lubridate::floor_date(date, unit = "month"))
+
+
+ny_noaa3 = 
+  ny_noaa |> 
+  drop_na() |> 
+  filter(date >= as.Date("2001-01-01"), date <= as.Date("2010-12-31")) |> 
+  mutate(tmin = as.numeric(tmin), tmax = as.numeric(tmax), tmin = tmin / 10, tmax = tmax / 10) |> 
+  mutate(month = lubridate::floor_date(date, unit = "month"))
+
+id_list = pull(ny_noaa3, id)
+id_5 = sample(id_list, size=5)
+
+
+ny_noaa3 = ny_noaa3 |>
+  filter(id %in% id_5)
 ```
 
 Column {data-width=550}
@@ -31,13 +54,14 @@ Column {data-width=550}
 ### Chart A
 
 ```{r}
-ny_noaa |> 
-  plot_ly(x = ~tmax, y = ~tmin, type = "scatter", mode = "markers", 
-          marker = list(opacity = 0.5)) |> 
-  layout(title = "Temperature Plot for Central Park Between 2008 and 2010",
-    xaxis = list(title = "Minimum daily temperature (C)"),
-    yaxis = list(title = "Maximum daily temperature (C)"),
-    legend = list(x = 1, y = 1))
+ny_noaa3 |>
+   group_by(id, month) |>
+   summarize(m_tmax = mean(tmax), m_tmin = mean(tmin)) |>
+   plot_ly(x = ~m_tmin, y = ~m_tmax, color = ~id, type = "scatter", mode = "markers", 
+          marker = list(opacity = 0.6)) |>
+   layout(title = "Average Temperature Plot for NY State Between 2001 and 2010 (Random Sampling)", font = list(size=10),
+    xaxis = list(title = "Average minimum daily temperature (C) of each month"),
+    yaxis = list(title = "Average maximum daily temperature (C) of each month"))
 ```
 
 Column {data-width=450}
@@ -46,23 +70,24 @@ Column {data-width=450}
 ### Chart B
 
 ```{r}
-ny_noaa |>
-  group_by(month) |>
-  summarize(mean_tmax = mean(tmax)) |>
-  plot_ly(x = ~month, y = ~mean_tmax, type = "scatter", mode = "lines+markers") |>
-  layout(title = "Average Max Temperature for Central Park Between 2008 and 2010", font = list(size=10),
-    xaxis = list(title = "Month"),
-    yaxis = list(title = "Average maximum temperature (C)"))
+ny_noaa4 |>
+   group_by(year) |>
+   summarize(m_tmax = mean(tmax), m_tmin = mean(tmin)) |>
+   plot_ly(x = ~year, y = ~m_tmin, type = "scatter", mode = "lines+markers", name = "Minimum") |>
+   add_trace(x = ~year, y = ~m_tmax, type = "scatter", mode = "lines+markers", name = "Maximum") |>
+   layout(title = "Average Max and Min Temperature for NY State Between 2001 and 2010", font = list(size=10),
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Average temperature (C)"))
   
 ```
 
 ### Chart C
 
 ```{r}
-ny_noaa |>
+ny_noaa1 |>
   filter(prcp > 0) |>
   plot_ly(x = ~prcp, type = "histogram", histnorm = "probability", opacity = 0.5) |>
-  layout(title = "Density Plot of Precipitation for Central Park Between 2008 and 2010", font = list(size=10),
+  layout(title = "Density Plot of Precipitation for Central Park Between 2001 and 2010", font = list(size=10),
     xaxis = list(title = "Precipitation (tenths of mm)"),
     yaxis = list(title = "Density"))
 ```

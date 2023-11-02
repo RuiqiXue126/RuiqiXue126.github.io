@@ -60,3 +60,60 @@ ny_noaa |>
     yaxis = list(title = "Density"))
 ```
 
+```{r}
+data("ny_noaa")
+
+ny_noaa3 = 
+  ny_noaa |> 
+  drop_na() |> 
+  filter(date >= as.Date("2001-01-01"), date <= as.Date("2010-12-31")) |> 
+  mutate(tmin = as.numeric(tmin), tmax = as.numeric(tmax), tmin = tmin / 10, tmax = tmax / 10) |> 
+  mutate(month = lubridate::floor_date(date, unit = "month"))
+
+id_list = pull(ny_noaa3, id)
+id_5 = sample(id_list, size=5)
+
+
+ny_noaa3 = ny_noaa3 |>
+  filter(id %in% id_5)
+
+
+  
+```
+
+```{r}
+data("ny_noaa")
+
+ny_noaa4 = 
+  ny_noaa |> 
+  drop_na() |> 
+  filter(date >= as.Date("2001-01-01"), date <= as.Date("2010-12-31")) |> 
+  mutate(tmin = as.numeric(tmin), tmax = as.numeric(tmax), tmin = tmin / 10, tmax = tmax / 10) |> 
+  mutate(year = lubridate::floor_date(date, unit = "year"),
+         month = lubridate::floor_date(date, unit = "month"))
+```
+
+```{r}
+ny_noaa4 |>
+   group_by(month) |>
+   summarize(m_tmax = mean(tmax), m_tmin = mean(tmin)) |>
+   plot_ly(x = ~m_tmin, y = ~m_tmax, type = "scatter", mode = "markers", 
+          marker = list(opacity = 0.5)) |>
+   layout(title = "Temperature Plot for NY State Between 2001 and 2010",
+    xaxis = list(title = "Minimum daily temperature (C) by month"),
+    yaxis = list(title = "Maximum daily temperature (C) by month"))
+```
+
+```{r}
+ny_noaa4 |>
+   group_by(year) |>
+   summarize(m_tmax = mean(tmax), m_tmin = mean(tmin)) |>
+   plot_ly(x = ~year, y = ~m_tmin, type = "scatter", mode = "lines+markers", name = "Minimum") |>
+   add_trace(x = ~year, y = ~m_tmax, type = "scatter", mode = "lines+markers", name = "Maximum") |>
+   layout(title = "Average Max and Min Temperature for NY State Between 2001 and 2010",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Average temperature (C)"))
+```
+
+
+
